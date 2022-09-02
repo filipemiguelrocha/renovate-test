@@ -1,0 +1,29 @@
+# doc: https://github.com/github/issue-labeler
+name: Issue labeler
+on:
+  # workflow parameters
+  workflow_call:
+    inputs:
+      configuration-path:
+        description: The path for the label configurations
+        default: .github/issue-labeler.yml
+        required: false
+        type: string
+
+  # workflow triggers
+  issues:
+    types: [opened, edited]
+  pull_request:
+    types: [opened, edited]
+  workflow_dispatch:
+
+jobs:
+  issue-labels:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: github/issue-labeler@v2.5
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          configuration-path: ${{ inputs.configuration-path || '.github/issue-labeler.yml' }}
+          enable-versioned-regex: 0
+          include-title: 1
