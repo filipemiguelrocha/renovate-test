@@ -3,7 +3,7 @@ module.exports = {
   dryRun: true,
   username: 'renovate-release',
   gitAuthor: 'Renovate Bot <bot@renovateapp.com>',
-  onboarding: false,
+  onboarding: true,
   platform: 'github',
   includeForks: true,
   repositories: [
